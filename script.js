@@ -18,6 +18,10 @@ function generatePassword() {
     passwordLength = +prompt("Please enter a valid password length. Enter a number between 8 and 128.");
   }
 
+  var lowerCaseLetters = confirm("Do you want LOWER-CASE letters?");
+  var upperCaseLetters = confirm("Do you want UPPER-CASE letters?");
+  var numerals = confirm("Do you want numbers?");
+  var specialCharacters = confirm("Do you want special characters?");
 }
 
 // Write password to the #password input
