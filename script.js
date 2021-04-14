@@ -3,21 +3,15 @@ var generateBtn = document.querySelector("#generate");
 
 function generatePassword() {
 
-  // lowerCaseLetters = "abcdefghijklmnopqrstuvwxyz";
-  // upperCaseLetters = lowerCaseLetters.toUpperCase();
-  // specialCharacters = "!@#$%^&*";
-  // numbers = "0123456789";
-
   possibleCharacters = "";
   var passwordLength;
-  while (
-    passwordLength < 8 ||
-    passwordLength > 128 ||
-    passwordLength == undefined
-  ) {
+
+  do {
     passwordLength = +prompt("Please enter a valid password length. Enter a number between 8 and 128.");
-    if (passwordLength == null) break;
-  }
+  } while (
+    passwordLength < 8 ||
+    passwordLength > 128
+  )
 
   var lowerCaseLetters = confirm("Do you want LOWER-CASE letters?");
   var upperCaseLetters = confirm("Do you want UPPER-CASE letters?");
@@ -31,6 +25,16 @@ function generatePassword() {
   if (upperCaseLetters) {
     possibleCharacters += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   }
+
+  if (numerals) {
+    possibleCharacters += "0123456789";
+  }
+
+  if (specialCharacters) {
+    possibleCharacters += "!@#$%^&*";
+  }
+
+  console.log(possibleCharacters);
 
 }
 
