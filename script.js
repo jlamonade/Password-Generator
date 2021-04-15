@@ -26,11 +26,26 @@ function generatePassword() {
     return true;
   }
 
-  if (validateLength()) {
-    ifLowerCaseLetters = (confirm("Do you want LOWER-CASE letters?")); 
-    ifUpperCaseLetters = confirm("Do you want UPPER-CASE letters?");
-    ifNumerals = confirm("Do you want numbers?");
-    ifSpecialCharacters = confirm("Do you want special characters?");
+  function getCharacterOptions () {
+    if (validateLength()) {
+      ifLowerCaseLetters = confirm("Do you want LOWER-CASE letters?"); 
+      ifUpperCaseLetters = confirm("Do you want UPPER-CASE letters?");
+      ifNumerals = confirm("Do you want numbers?");
+      ifSpecialCharacters = confirm("Do you want special characters?");
+    }
+  }
+
+  function checkIfAllOptionsFalse () {
+    if (!ifLowerCaseLetters && !ifUpperCaseLetters && !ifNumerals && !ifSpecialCharacters) {
+      return true
+    } else {
+      return false
+    }
+  }
+
+  getCharacterOptions();
+  if (checkIfAllOptionsFalse()) {
+    getCharacterOption();
   }
 
   if (ifLowerCaseLetters) {
