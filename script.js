@@ -3,18 +3,23 @@ var generateBtn = document.querySelector("#generate");
 
 function generatePassword() {
 
+  // possible character sets
   var lowerCaseLetters = "abcdefghijklmnopqrstuvwxyz";
   var upperCaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   var numerals = "0123456789";
   var symbols = "!@#$%^&*()-=_+";
   var re = new RegExp(/^\d+$/); 
 
-  function getPasswordLength () {
+  function getPasswordLength () { // gets the password length
     var passwordLength = prompt("Enter a valid password length. Enter a number between 8 and 128.");
     return passwordLength;
   }
 
-  function validatePasswordLength () {
+  function validatePasswordLength () { 
+    /* 
+      validates that the password is a number between 8 and 128
+      if anything but a number between 8 and 128 then getPasswordLength
+    */
     var passwordLength;
     while (
       !passwordLength ||
@@ -28,6 +33,11 @@ function generatePassword() {
   }
 
   function getCharacterTypes () {
+    /* 
+      gets character types by confirm() and if true
+      adds the associated characters to possibleCharacters 
+      and then returns possibleCharacters
+    */ 
     var possibleCharacters = "";
     if (confirm("Lower case letters?")) possibleCharacters += lowerCaseLetters;
     if (confirm("Upper case letters?")) possibleCharacters += upperCaseLetters;
@@ -38,6 +48,11 @@ function generatePassword() {
   }
 
   function validateCharacterTypes () {
+    /* 
+      if possibleCharacters is empty then user chose
+      false for all types and prompts for character types
+      again
+    */
     var possibleCharacters;
     while (!possibleCharacters) {
       alert("You must choose at least 1 character type.")
@@ -47,13 +62,16 @@ function generatePassword() {
   }
 
   function generate (passwordLength, possibleCharacters) {
+    /* 
+      takes in a passwordLength and possibleCharacters 
+      to generate a random password
+     */
     var password = "";
     console.log(passwordLength, possibleCharacters);
     for (var i = 0; i < passwordLength; i++) {
       randomIndex = Math.floor(Math.random() * possibleCharacters.length);
       password += possibleCharacters[randomIndex];
     }
-    console.log(password);
     return password;  
   }
 
