@@ -15,7 +15,7 @@ function generatePassword() {
   function validateLength () {
     do { 
       passwordLength = prompt("Please enter a valid password length. Enter a number between 8 and 128.");
-      if (passwordLength == null) break;
+      if (passwordLength == null) return false;
     }
     while (
       !re.test(passwordLength) ||
@@ -23,12 +23,11 @@ function generatePassword() {
       passwordLength < 8 || 
       passwordLength > 128
     );
+    return true;
   }
 
-  validateLength();
-
-  if (re.test(passwordLength)) {
-    ifLowerCaseLetters = (confirm("Do you want LOWER-CASE letters?")) ; 
+  if (validateLength()) {
+    ifLowerCaseLetters = (confirm("Do you want LOWER-CASE letters?")); 
     ifUpperCaseLetters = confirm("Do you want UPPER-CASE letters?");
     ifNumerals = confirm("Do you want numbers?");
     ifSpecialCharacters = confirm("Do you want special characters?");
