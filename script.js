@@ -34,20 +34,17 @@ function generatePassword() {
     if (confirm("Numbers?")) possibleCharacters += numerals;
     if (confirm("Symbols")) possibleCharacters += symbols;
 
-    return possibleCharacters ? possibleCharacters : (
-      alert("You must choose at least 1 character type."), 
-      getCharacterTypes()
-    );
+    return possibleCharacters;
   }
 
-  // function validateCharacterTypes () {
-  //   var possibleCharacters;
-  //   while (!possibleCharacters) {
-  //     alert("You must choose at least 1 character type.")
-  //     possibleCharacters = getCharacterTypes();
-  //   }
-  //   return possibleCharacters;
-  // }
+  function validateCharacterTypes () {
+    var possibleCharacters;
+    while (!possibleCharacters) {
+      alert("You must choose at least 1 character type.")
+      possibleCharacters = getCharacterTypes();
+    }
+    return possibleCharacters;
+  }
 
   function generate (passwordLength, possibleCharacters) {
     var password = "";
@@ -60,7 +57,7 @@ function generatePassword() {
     return password;  
   }
 
-  return generate(validatePasswordLength(), getCharacterTypes());
+  return generate(validatePasswordLength(), validateCharacterTypes());
 }
 // Write password to the #password input
 function writePassword() {
