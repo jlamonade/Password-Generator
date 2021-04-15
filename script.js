@@ -3,28 +3,37 @@ var generateBtn = document.querySelector("#generate");
 
 function generatePassword() {
 
-  possibleCharacters = "";
+  var possibleCharacters = "";
   var password = "";
   var passwordLength;
+  var lowerCaseLetters;
+  var upperCaseLetters;
+  var numerals;
+  var specialCharacters;
 
-  do {
+  while (
+    !passwordLength ||
+    passwordLength < 8 ||
+    passwordLength > 128
+  ) {
     passwordLength = prompt("Please enter a valid password length. Enter a number between 8 and 128.");
     console.log(passwordLength);
-    if (passwordLength == null) {
+    if (!passwordLength) {
       break;
     }
-  } while (
-    passwordLength == undefined ||
-    typeof +passwordLength != "number" ||
-    isNaN(passwordLength) ||
-    +passwordLength < 8 ||
-    +passwordLength > 128
-  )
+  }
 
-  var lowerCaseLetters = confirm("Do you want LOWER-CASE letters?"); 
-  var upperCaseLetters = confirm("Do you want UPPER-CASE letters?");
-  var numerals = confirm("Do you want numbers?");
-  var specialCharacters = confirm("Do you want special characters?");
+  if (passwordLength) {
+    lowerCaseLetters = confirm("Do you want LOWER-CASE letters?"); 
+    upperCaseLetters = confirm("Do you want UPPER-CASE letters?");
+    numerals = confirm("Do you want numbers?");
+    specialCharacters = confirm("Do you want special characters?");
+  }
+
+  // var lowerCaseLetters = confirm("Do you want LOWER-CASE letters?"); 
+  // var upperCaseLetters = confirm("Do you want UPPER-CASE letters?");
+  // var numerals = confirm("Do you want numbers?");
+  // var specialCharacters = confirm("Do you want special characters?");
 
   if (lowerCaseLetters) {
     possibleCharacters += "abcdefghijklmnopqrstuvwxyz";
@@ -36,11 +45,11 @@ function generatePassword() {
     possibleCharacters += "0123456789";
   }
   if (specialCharacters) {
-    possibleCharacters += "!@#$%^&*";
+    possibleCharacters += "!@#$%^&*()-=_+";
   }
 
   for (var i = 0; i < passwordLength; i++) {
-    randomIndex = Math.floor(Math.random() * possibleCharacters.length);
+    var randomIndex = Math.floor(Math.random() * possibleCharacters.length);
     password += possibleCharacters[randomIndex];
   }
   
