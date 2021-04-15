@@ -17,6 +17,11 @@ function generatePassword() {
     console.log(passwordLength);
     if (passwordLength == null) {
       break;
+    } else {
+      ifLowerCaseLetters = confirm("Do you want LOWER-CASE letters?"); 
+      ifUpperCaseLetters = confirm("Do you want UPPER-CASE letters?");
+      ifNumerals = confirm("Do you want numbers?");
+      ifSpecialCharacters = confirm("Do you want special characters?");
     }
   } while (
     passwordLength == undefined ||
@@ -26,10 +31,6 @@ function generatePassword() {
     +passwordLength > 128
   )
 
-  var ifLowerCaseLetters = confirm("Do you want LOWER-CASE letters?"); 
-  var ifUpperCaseLetters = confirm("Do you want UPPER-CASE letters?");
-  var ifNumerals = confirm("Do you want numbers?");
-  var ifSpecialCharacters = confirm("Do you want special characters?");
 
   if (ifLowerCaseLetters) {
     possibleCharacters += "abcdefghijklmnopqrstuvwxyz";
