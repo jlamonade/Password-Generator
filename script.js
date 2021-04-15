@@ -9,7 +9,7 @@ function generatePassword() {
   var ifLowerCaseLetters;
   var ifUpperCaseLetters;
   var ifNumerals;
-  var ifSpecialCharacters;
+  var ifSymbols;
   var re = new RegExp(/^\d+$/); 
 
   do { // using do/while here so that prompt comes before any checks
@@ -27,7 +27,7 @@ function generatePassword() {
   ifLowerCaseLetters = confirm("Do you want LOWER-CASE letters?"); 
   ifUpperCaseLetters = confirm("Do you want UPPER-CASE letters?");
   ifNumerals = confirm("Do you want NUMBERS?");
-  ifSpecialCharacters = confirm("Do you want SPECIAL CHARACTERS?");
+  ifSymbols = confirm("Do you want SYMBOLS?");
 
 
   /* appends character sets into possibleCharacters */
@@ -40,7 +40,7 @@ function generatePassword() {
   if (ifNumerals) {
     possibleCharacters += "0123456789";
   }
-  if (ifSpecialCharacters) {
+  if (ifSymbols) {
     possibleCharacters += "!@#$%^&*()-=_+";
   }
 
