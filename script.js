@@ -57,17 +57,17 @@ function generatePassword() {
     passwordLength is converted to an integer here because 
     of comparison with integer.
     */
-    randomIndex = Math.floor(Math.random() * possibleCharacters.length);
+    var randomIndex = Math.floor(Math.random() * possibleCharacters.length);
     /* 
     Generates a random number between 0 and possibleCharacters.length
-    used as an index for possibleCharacters
+    used as an index to get a character from possibleCharacters
     */
     password += possibleCharacters[randomIndex]; // appends newly generated character into password
   }
   return password;
  } else {
    alert('You must choose at least one character type.');
-   return null; // null so that passwordText.value does not change
+   return null; // if !possibleCharacters then null so that passwordText.value does not change
  }
 }
 
