@@ -15,7 +15,7 @@ function generatePassword() {
   do { // using do/while here so that prompt comes before any checks
     passwordLength = prompt("Please enter a valid password length. Enter a number between 8 and 128.");
     if (passwordLength == null) {
-      break;
+      return null;
     }
   } while ( // the conditions here ensures user enters a valid integer before function proceeds further
     !re.test(passwordLength) || // regex test returns true if passwordLength contains anything but numbers
@@ -24,14 +24,10 @@ function generatePassword() {
     passwordLength > 128
     )
 
-  if (passwordLength) { 
-    ifLowerCaseLetters = confirm("Do you want LOWER-CASE letters?"); 
-    ifUpperCaseLetters = confirm("Do you want UPPER-CASE letters?");
-    ifNumerals = confirm("Do you want NUMBERS?");
-    ifSpecialCharacters = confirm("Do you want SPECIAL CHARACTERS?");
-  } else {
-    return null; // null if passwordLength is null or undefined
-  }
+  ifLowerCaseLetters = confirm("Do you want LOWER-CASE letters?"); 
+  ifUpperCaseLetters = confirm("Do you want UPPER-CASE letters?");
+  ifNumerals = confirm("Do you want NUMBERS?");
+  ifSpecialCharacters = confirm("Do you want SPECIAL CHARACTERS?");
 
 
   /* appends character sets into possibleCharacters */
@@ -61,11 +57,10 @@ function generatePassword() {
     passwordLength is converted to an integer here because 
     of comparison with integer.
     */
-    randomIndex = Math.floor(Math.random() * possibleCharacters.length + 0.5);
+    randomIndex = Math.floor(Math.random() * possibleCharacters.length);
     /* 
     Generates a random number between 0 and possibleCharacters.length
-    Adding 0.5 ensures that the last index is generated since .floor()
-    is used
+    used as an index for possibleCharacters
     */
     password += possibleCharacters[randomIndex]; // appends newly generated character into password
   }
