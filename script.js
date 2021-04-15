@@ -44,8 +44,6 @@ function generatePassword() {
     possibleCharacters += "!@#$%^&*()-=_+";
   }
 
-  console.log(possibleCharacters);
-
  if (possibleCharacters) { 
   /* 
   checks to make sure that user chooses at least 1 character type
