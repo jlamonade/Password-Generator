@@ -6,44 +6,97 @@ function generatePassword() {
   var possibleCharacters = ""; // string with possible characters used in password
   var password = "";
   var passwordLength;
-  var ifLowerCaseLetters;
-  var ifUpperCaseLetters;
-  var ifNumerals;
-  var ifSymbols;
+  var lowerCaseLetters = "abcdefghijklmnopqrstuvwxyz";
+  var upperCaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  var numerals = "0123456789";
+  var symbols = "!@#$%^&*()-=_+";
   var re = new RegExp(/^\d+$/); 
 
-  do { // using do/while here so that prompt comes before any checks
-    passwordLength = prompt("Please enter a valid password length. Enter a number between 8 and 128.");
-    if (passwordLength == null) {
-      return null;
+  function getPasswordLength() {
+    var passwordLength = prompt("Please enter a valid password length. Enter a number between 8 and 128.");
+    if (validatePasswordLength()) {
+      return passwordLength;
     }
-  } while ( // the conditions here ensures user enters a valid integer before function proceeds further
-    !re.test(passwordLength) || // regex test returns true if passwordLength contains anything but numbers
-    !passwordLength || // checks for null or undefined values
-    passwordLength < 8 || 
-    passwordLength > 128
-    )
+  }
 
-  ifLowerCaseLetters = confirm("Do you want LOWER-CASE letters?"); 
-  ifUpperCaseLetters = confirm("Do you want UPPER-CASE letters?");
-  ifNumerals = confirm("Do you want NUMBERS?");
-  ifSymbols = confirm("Do you want SYMBOLS?");
+  function validatePasswordLength(passwordLength) {
+    var re = new RegExp(/^\d+$/); 
+    if (
+      !re.test(passwordLength) ||
+      !passwordLength ||
+      passwordLength < 8 ||
+      passwordLength > 128
+    ) {
+      getPasswordLength();
+      return false;
+    } else {
+      return true;
+    }
+  }
 
+  // do { // using do/while here so that prompt comes before any checks
+  //   passwordLength = prompt("Please enter a valid password length. Enter a number between 8 and 128.");
+  //   if (passwordLength == null) {
+  //     return null;
+  //   }
+  // } while ( // the conditions here ensures user enters a valid integer before function proceeds further
+  //   !re.test(passwordLength) || // regex test returns true if passwordLength contains anything but numbers
+  //   !passwordLength || // checks for null or undefined values
+  //   passwordLength < 8 || 
+  //   passwordLength > 128
+  //   )
+
+  // ifLowerCaseLetters = confirm("Do you want LOWER-CASE letters?"); 
+  // ifUpperCaseLetters = confirm("Do you want UPPER-CASE letters?");
+  // ifNumerals = confirm("Do you want NUMBERS?");
+  // ifSymbols = confirm("Do you want SYMBOLS?");
+
+  function getPossibleCharacters () {
+    var possibleCharacters = "";
+    if (confirm("Do you want LOWER-CASE letters?")) {
+      possibleCharacters += lowerCaseLetters;
+    }
+    if (confirm("Do you want UPPER-CASE letters?")) {
+      possibleCharacters += upperCaseLetters;
+    }
+    if (confirm("Do you want NUMBERS?")) {
+      possibleCharacters += numerals;
+    }
+    if (confirm("Do you want SYMBOLS?")) {
+      possibleCharacters += symbols;
+    }
+    return possibleCharacters;
+  }
 
   /* appends character sets into possibleCharacters */
-  if (ifLowerCaseLetters) {
-    possibleCharacters += "abcdefghijklmnopqrstuvwxyz";
-  }
-  if (ifUpperCaseLetters) {
-    possibleCharacters += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  }
-  if (ifNumerals) {
-    possibleCharacters += "0123456789";
-  }
-  if (ifSymbols) {
-    possibleCharacters += "!@#$%^&*()-=_+";
+  // if (ifLowerCaseLetters) {
+  //   possibleCharacters += "abcdefghijklmnopqrstuvwxyz";
+  // }
+  // if (ifUpperCaseLetters) {
+  //   possibleCharacters += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  // }
+  // if (ifNumerals) {
+  //   possibleCharacters += "0123456789";
+  // }
+  // if (ifSymbols) {
+  //   possibleCharacters += "!@#$%^&*()-=_+";
+  // }
+
+
+  function checkIfCharacterTypeChoicesAllFalse () {
+    if (possibleCharacters) {
+      generate();
+    }
   }
 
+  function generate () {
+    var password = "";
+    for (var i = 0; i < getPasswordLength(); i++) { 
+      var randomIndex = Math.floor(Math.random() * possibleCharacters.length);
+      password += possibleCharacters[randomIndex]; 
+    }
+    return password;
+  }
  if (possibleCharacters) { 
   /* 
   checks to make sure that user chooses at least 1 character type
