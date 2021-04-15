@@ -3,7 +3,7 @@ var generateBtn = document.querySelector("#generate");
 
 function generatePassword() {
 
-  var possibleCharacters = "";
+  possibleCharacters = "";
   var password = "";
   var passwordLength;
   var ifLowerCaseLetters;
@@ -12,41 +12,24 @@ function generatePassword() {
   var ifSpecialCharacters;
   var re = new RegExp('^[0-9]$');
 
-  function validateLength () {
-    do { 
-      passwordLength = prompt("Please enter a valid password length. Enter a number between 8 and 128.");
-      if (passwordLength == null) return false;
+  do {
+    passwordLength = prompt("Please enter a valid password length. Enter a number between 8 and 128.");
+    console.log(passwordLength);
+    if (passwordLength == null) {
+      break;
     }
-    while (
-      !re.test(passwordLength) ||
-      !passwordLength || 
-      passwordLength < 8 || 
-      passwordLength > 128
-    );
-    return true;
-  }
+  } while (
+    passwordLength == undefined ||
+    typeof +passwordLength != "number" ||
+    isNaN(passwordLength) ||
+    +passwordLength < 8 ||
+    +passwordLength > 128
+  )
 
-  function getCharacterOptions () {
-    if (validateLength()) {
-      ifLowerCaseLetters = confirm("Do you want LOWER-CASE letters?"); 
-      ifUpperCaseLetters = confirm("Do you want UPPER-CASE letters?");
-      ifNumerals = confirm("Do you want numbers?");
-      ifSpecialCharacters = confirm("Do you want special characters?");
-    }
-  }
-
-  function checkIfAllOptionsFalse () {
-    if (!ifLowerCaseLetters && !ifUpperCaseLetters && !ifNumerals && !ifSpecialCharacters) {
-      return true
-    } else {
-      return false
-    }
-  }
-
-  getCharacterOptions();
-  if (checkIfAllOptionsFalse()) {
-    getCharacterOption();
-  }
+  var ifLowerCaseLetters = confirm("Do you want LOWER-CASE letters?"); 
+  var ifUpperCaseLetters = confirm("Do you want UPPER-CASE letters?");
+  var ifNumerals = confirm("Do you want numbers?");
+  var ifSpecialCharacters = confirm("Do you want special characters?");
 
   if (ifLowerCaseLetters) {
     possibleCharacters += "abcdefghijklmnopqrstuvwxyz";
@@ -64,7 +47,7 @@ function generatePassword() {
   console.log(possibleCharacters);
 
   for (var i = 0; i < passwordLength; i++) {
-    var randomIndex = Math.floor(Math.random() * possibleCharacters.length);
+    randomIndex = Math.floor(Math.random() * possibleCharacters.length);
     password += possibleCharacters[randomIndex];
   }
   return password;
