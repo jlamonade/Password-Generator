@@ -68,7 +68,6 @@ function generatePassword() {
       to generate a random password
      */
     var password = "";
-    console.log(passwordLength, possibleCharacters);
     for (var i = 0; i < passwordLength; i++) {
       randomIndex = Math.floor(Math.random() * possibleCharacters.length);
       password += possibleCharacters[randomIndex];
