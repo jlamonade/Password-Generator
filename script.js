@@ -8,7 +8,6 @@ function generatePassword() {
   var upperCaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   var numerals = "0123456789";
   var symbols = "!@#$%^&*()-=_+";
-  var re = new RegExp(/^\d+$/); 
 
   function getPasswordLength () { // gets the password length
     var passwordLength = prompt("Enter a valid password length. Enter a number between 8 and 128.");
@@ -23,7 +22,7 @@ function generatePassword() {
     var passwordLength;
     while (
       !passwordLength ||
-      !re.test(passwordLength) ||
+      isNaN(passwordLength) ||
       passwordLength < 8 ||
       passwordLength > 128
     ) {
@@ -50,8 +49,9 @@ function generatePassword() {
   function validateCharacterTypes () {
     /* 
       if possibleCharacters is empty then user chose
-      false for all types and prompts for character types
-      again
+      false for all types and asks for character types
+      again, returns a string of possibleCharacters
+      if it passes validation
     */
     var possibleCharacters;
     while (!possibleCharacters) {
