@@ -18,6 +18,7 @@ function generatePassword() {
     /* 
       validates that the password is a number between 8 and 128
       if anything but a number between 8 and 128 then getPasswordLength
+      if passwordLength validates then it will return it
     */
     var passwordLength;
     while (
